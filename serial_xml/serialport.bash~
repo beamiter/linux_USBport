@@ -57,14 +57,11 @@ do
     echo $i
 done
 
-bashpwd=/home/$USER/serial_xml/create_xml.bash
-source ${bashpwd}
-
-# path=$PWD
-# echo $path
-# bashpwd=$path
-# source ${bashpwd}/${bashsrc}
-
+path=$PWD
+echo $path
+bashpwd=$path
+bashsrc='serial_xml/create_xml.bash'
+source ${bashpwd}/${bashsrc}
 # source './create_xml.bash'  
 # put_head 'xml version='1.0' encoding="GBK"'  
 put_head 'xml version="1.0" '  

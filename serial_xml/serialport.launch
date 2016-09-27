@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <launch>
 	<param name="gpsserialport" value="/dev/" type="string"/>
-	<param name="mcuserialport" value="/dev/ttyUSB1" type="string"/>
-	<param name="appserialport" value="/dev/ttyUSB2" type="string"/>
+	<param name="mcuserialport" value="/dev/ttyUSB0" type="string"/>
+	<param name="appserialport" value="/dev/" type="string"/>
 	<param name="others" value="/dev/" type="string"/>
 </launch>

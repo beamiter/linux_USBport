@@ -1,0 +1,13 @@
+注意：
+	本教程不是固定端口号，即每个端口的USB端口号还是没有固定，但是此脚本读取每一个USB端口的硬件ID，并返回该硬件ID对应的USB端口号，并生成对应的端口号launch文件，实现了对端口号的动态配置。
+
+配置步骤：
+	1. ctrl+alt+t 打开terminal, 复制 “ls -l /sys/class/tty/ttyUSB*” 查看端口硬件ID，例如得到“ ../../devices/pci0000:00/0000:00:14.0/usb2/2-2/2-2.1/2-2.1:1.0/ttyUSB2/tty/ttyUSB2“字样，将”.1:1.0“复制到serialport.bash的pid数组中，实现一个端口的配置;
+	2. 将”<include file="$(find ivrviz)/../../../serialport.launch"/>“添加到我们现有的start.lauch中，并屏蔽gpsserialport,mcuserialport,appserialport等三个参数。
+	3. 将"bash -c $PWD/serial_xml/serialport.bash"加在home目录startros.sh的第一行（必须是第一行，否则端口配置参数不成功）.
+
+操作步骤：
+	将serial_xml文件夹放在用户home目录，将其中launch文件夹替换ivpt的launch,将其中startros.sh替换home目录下的startros.sh即可。
+	
+
+

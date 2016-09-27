@@ -1,0 +1,119 @@
+<?xml version="1.0" ?>
+
+<launch>
+
+<node name="ivsensorgps"     pkg="ivsensorgps"     type="ivsensorgps"     output="screen"/>
+<node name="ivsensorradar"   pkg="ivsensorradar"   type="ivsensorradar"   output="screen"/>
+<node name="ivobjectfusion"  pkg="ivobjectfusion"  type="ivobjectfusion"  output="screen"/>
+<node name="ivactuator"      pkg="ivactuator"      type="ivactuator"      output="screen"/>
+<node name="ivroadstructure" pkg="ivroadstructure" type="ivroadstructure" output="screen"/>
+<node name="ivpathplanner"   pkg="ivpathplanner"   type="ivpathplanner"   output="screen"/>
+<node name="ivcogmatrix"     pkg="ivcogmatrix"     type="ivcogmatrix"     output="screen"/> 
+<node name="ivsteercontrol"  pkg="ivsteercontrol"  type="ivsteercontrol"  output="screen"/>
+<node name="ivdrivercontrol" pkg="ivdrivercontrol" type="ivdrivercontrol" output="screen"/>
+<node name="ivmonitor"       pkg="ivmonitor"       type="ivmonitor"       output="screen"/>
+<node name="ivapp"           pkg="ivapp"           type="ivapp"       output="screen"/>
+<node name="ivsensorlidar"   pkg="ivsensorlidar"   type="ivsensorlidar"       output="screen"/>
+<node name="ivsensorcamera"   pkg="ivsensorcamera"   type="ivsensorcamera"     output="screen"/>
+<include file="$(find ivrviz)/launch/global.launch"/>
+<include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch"/>
+
+
+   
+<!--
+<node name="rviz"            pkg="rviz"            type="rviz"            args="-d $(find ivrviz)/resource/global.rviz" output="screen"/>
+<node name="ivrvizsrv"       pkg="ivrviz"          type="ivrvizsrv"       output="screen"/>
+<node name="ivrviz"          pkg="ivrviz"          type="ivrviz"          output="screen"/>
+<param name="map_data_path" value="$(find ivrviz)/resource/maping.txt" type="str"/>
+-->
+
+<!--ivsensorgps -->
+  <!--they are system set parameters, not only for ivsensorgps-->
+   <param name="runningmode" value="0" type="int"/>              <!--0:car, 1:vrep -->
+   <param name="bdebug" value = "1" type = "int" />              <!--0:not show debug msg, 1:show debug msg--> 
+   <param name="updateinfo" value="20160803 1.modified launch file by wangxiao; 2.finish 3d show using ivrviz by hanlubing" type="string"/> 
+  <!--below is gps set-->
+   <param name="gpsdevice" value="1" type="int"/>                <!--0:sinan 1:lianshi 2:qianxun -->
+   <param name="gpsserialport" value="/dev/ttyS1" type="string"/>
+   <param name="gpsbaudrate" value="115200" type="int"/>
+   <param name="gpssavefile" value="0" type="int"/>
+   <param name="gpsloopfrep" value="20" type="int"/>
+   <param name="gpssavepath" value="$(find ivrviz)/resource/recording_" type="string"/>
+   <param name="gpsloopfrep" value="20" type="int"/>               
+   
+<!--ivsensorradar -->
+   <param name="hostip" value="192.168.1.100" type="string"/>
+   <param name="hostport" value="4005" type="int"/>
+   <param name="canetip" value="192.168.1.178" type="string"/>
+   <param name="canetport" value="4005" type="int"/>
+   <param name="radarloopfrep" value="100" type="int"/>
+ 
+<!--ivsensorcamera -->
+   <param name="camerahostip" value="192.168.1.100" type="string"/>
+   <param name="camerahostport" value="9000" type="int"/>
+   <param name="cameracanetip" value="192.168.1.200" type="string"/>
+   <param name="cameracanetport" value="9000" type="int"/>
+   <param name="cameraloopfrep" value="10" type="int"/>
+  
+<!--ivcogmatrix -->
+   <param name="cmloopfrep" value="20" type="int"/>  
+
+   <param name="startlat1" value = "40.15008064" type = "double"/>
+   <param name="startlon1" value = "116.22837682" type = "double"/>
+   <param name="stoplat1" value = "40.14993985" type = "double"/>
+   <param name="stoplon1" value = "116.22939835" type = "double"/>	
+
+   <param name="startlat2" value = "40.12345" type = "double"/>
+   <param name="startlon2" value = "116.12345" type = "double"/>
+   <param name="stoplat2" value = "40.12345" type = "double"/>
+   <param name="stoplon2" value = "111.12345" type = "double"/>
+   
+   <param name="garlat" value = "40.15014520" type = "double"/>
+   <param name="garlon" value = "116.23000469" type = "double"/>
+   <!-- 116.23608857,40.15858148,0,83.08300000,0.07408000,5,25,08/03 16:34:37 -->
+   <param name="arrialpointlon" value = "116.23608857" type = "double"/>
+   <param name="arrialpointlat" value = "40.15858148" type = "double"/>
+   <param name="arrialpointheading" value = "83.08300000" type = "double"/>
+
+<!--ivobjectfusion --> 
+
+<!--ivactuator--> 
+   <param name="mcudevice" value="0" type="int"/>
+   <param name="mcuserialport" value="/dev/ttyS2" type="string"/>
+   <param name="mcubaudrate" value="9600" type="int"/>
+   <param name="mculoopfrep" value="20" type="int"/>               
+    <param name="cartype" value = "0" type = "int" />    <!-- cartype = 0,ruicheng car; if cartype = 1,egg car--> 
+
+<!--ivroadstructure--> 
+   <param name="routemap" value="$(find ivrviz)/resource/maping.txt" type="string"/>             
+   <param name="rsloopfrep" value="20" type="int"/>               
+
+<!--ivpathplanner--> 
+   <param name="scene" value="2" type="int"/>
+   <param name="pploopfrep" value="20" type="int"/>               
+   
+<!--ivrviz--> 
+<!--<param name="map_data_path" value="$(find ivrviz)/resource/maping.txt" type="str"/>--> 
+              
+
+<!--ivsteercontrol--> 
+   <param name="scloopfrep" value="20" type="int"/>               
+<!--ivdrivercontrol--> 
+   <param name="dcloopfrep" value="20" type="int"/>   
+<!--ivmonitor--> 
+   <param name="mnloopfrep" value="40" type="int"/>
+   <param name="radarbiasx" value="3.0"/>
+   <param name="radarbiasy" value="0.0"/>
+   <param name="radarbiasz" value="0.0"/>
+   <param name="velodynebiasx" value="1.0"/>
+   <param name="velodynebiasy" value="0.0"/>
+   <param name="velodynebiasz" value="1.5"/>
+
+<!--ivapp-->
+    <param name="appbaudrate" value="115200" type="int"/>
+    <param name="appserialport" value="/dev/ttyS3" type="string"/>
+    <param name="appsendrate" value="1" type="int"/>
+<!--ivapp-->
+
+
+</launch>

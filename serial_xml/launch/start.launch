@@ -1,0 +1,164 @@
+<?xml version="1.0" ?>
+
+<launch>
+
+<node name="ivsensorgps"     pkg="ivsensorgps"     type="ivsensorgps"     output="screen"/>
+<node name="ivsensorradar"   pkg="ivsensorradar"   type="ivsensorradar"   output="screen"/>
+<node name="ivobjectfusion"  pkg="ivobjectfusion"  type="ivobjectfusion"  output="screen"/>
+<node name="ivactuator"      pkg="ivactuator"      type="ivactuator"      output="screen"/>
+<node name="ivroadstructure" pkg="ivroadstructure" type="ivroadstructure" output="screen"/>
+<node name="ivpathplanner"   pkg="ivpathplanner"   type="ivpathplanner"   output="screen"/>
+<node name="ivcogmatrix"     pkg="ivcogmatrix"     type="ivcogmatrix"     output="screen"/> 
+<node name="ivsteercontrol"  pkg="ivsteercontrol"  type="ivsteercontrol"  output="screen"/>
+<node name="ivdrivercontrol" pkg="ivdrivercontrol" type="ivdrivercontrol" output="screen"/>
+<node name="ivmonitor"       pkg="ivmonitor"       type="ivmonitor"       output="screen"/>
+<node name="ivapp"           pkg="ivapp"           type="ivapp"       output="screen"/> 
+<node name="ivsensorlidar"   pkg="ivsensorlidar"   type="ivsensorlidar"       output="screen"/> 
+<node name="ivsensorcamera"   pkg="ivsensorcamera"   type="ivsensorcamera"       output="screen"/> 
+<node name="ivvtox"   pkg="ivvtox"   type="ivvtox"       output="screen"/> 
+
+
+<include file="$(find ivrviz)/../../../serialport.launch"/>
+
+<include file="$(find ivrviz)/launch/global.launch"/>
+<include file="$(find ivsicklidar)/launch/LMS1xx.launch"/>
+<include file="$(find ivconfig)/launch/ivconfig.launch"/>
+
+
+   
+<!-- 
+ <node name="rviz"            pkg="rviz"            type="rviz"            args="-d $(find ivrviz)/resource/global.rviz" output="screen"/>
+<node name="ivrvizsrv"       pkg="ivrviz"          type="ivrvizsrv"       output="screen"/>
+<node name="ivrviz"          pkg="ivrviz"          type="ivrviz"          output="screen"/>
+<param name="map_data_path" value="$(find ivrviz)/resource/maping.txt" type="str"/>
+-->
+
+<!--ivsensorgps -->
+  <!--they are system set parameters, not only for ivsensorgps-->
+   <param name="runningmode" value="0" type="int"/>              <!--0:car, 1:vrep -->
+   <param name="bdebug" value = "1" type = "int" />              <!--0:not show debug msg, 1:show debug msg--> 
+   <param name="updateinfo" value="20160803 1.modified launch file by wangxiao; 2.finish 3d show using ivrviz by hanlubing" type="string"/> 
+  <!--below is gps set-->
+   <param name="gpsdevice" value="1" type="int"/>                <!--0:sinan 1:lianshi 2:qianxun -->
+   <!--param name="gpsserialport" value="/dev/ttyUSB0" type="string"/-->
+   <param name="gpsbaudrate" value="115200" type="int"/>
+   <param name="gpssavefile" value="0" type="int"/>
+   <param name="gpsloopfrep" value="20" type="int"/>
+   <param name="gpssavepath" value="$(find ivrviz)/resource/recording_" type="string"/>
+   <param name="gpsloopfrep" value="20" type="int"/>               
+   
+<!--ivsensorradar -->
+   <param name="hostip" value="192.168.1.100" type="string"/>
+   <param name="hostport" value="4005" type="int"/>
+   <param name="canetip" value="192.168.1.178" type="string"/>
+   <param name="canetport" value="4005" type="int"/>
+   <param name="radarloopfrep" value="100" type="int"/>
+   
+<!--ivcogmatrix -->
+   <param name="cmloopfrep" value="20" type="int"/>  
+
+<!--ivsensorlidar -->
+   <param name="sllanewide" value="3.0" type="double"/> 
+   <param name="slcarwide" value="1.0" type="double"/>
+
+
+
+
+ 
+   <param name="trafficnum" value = "2" type = "int"/> 
+   <!-- trafficpt1 116.23609018,40.15858044,0,84.92200000,0.00000000,4,27,08/03 19:41:51-->
+   <param name="trafficptlon1" value = "116.23609963" type = "double"/>
+   <param name="trafficptlat1" value = "40.15858069" type = "double"/>
+   <param name="trafficptheading1" value = "84.7700000" type = "double"/>
+   <!-- trafficpt2 116.23455201,40.16202894,0,0.00000000,0.14816000,4,27,08/03 19:50:10 -->
+   <param name="trafficptlon2" value = "116.23455342" type = "double"/>
+   <param name="trafficptlat2" value = "40.16202564" type = "double"/>
+   <param name="trafficptheading2" value = "334.94" type = "double"/>
+   <!-- trafficpt3 116.23083309,40.16194507,0,261.11700000,0.05556000,4,24,08/03 19:45:16 -->
+   <param name="trafficptlon3" value = "116.23084179" type = "double"/>
+   <param name="trafficptlat3" value = "40.16194586" type = "double"/>
+   <param name="trafficptheading3" value = "261.11700000" type = "double"/>
+   <!-- trafficpt4 116.23098920,40.15856752,0,173.14900000,0.00000000,4,27,08/03 19:47:03-->
+   <param name="trafficptlon4" value = "116.23099038" type = "double"/>
+   <param name="trafficptlat4" value = "40.15854881" type = "double"/>
+   <param name="trafficptheading4" value = "172.8700000" type = "double"/>
+
+   <param name="stopnum" value = "4" type = "int"/>
+
+<!--   <param name="stopptlon1" value = "117" type = "double"/> --> <!--116.33582371,40.07829262-->
+<!--
+   <param name="stopptlat1" value = "41" type = "double"/>
+   <param name="stopptheading1" value = "177.48" type = "double"/>
+
+   <param name="stopptlon2" value = "117" type = "double"> --> <!--116.33585971,40.07791732-->
+<!--   <param name="stopptlat2" value = "41" type = "double"/>
+   <param name="stopptheading2" value = "173.90" type = "double"/>
+
+   <param name="stopptlon3" value = "116.33534856" type = "double"/>
+   <param name="stopptlat3" value = "40.07817506" type = "double"/>
+   <param name="stopptheading3" value = "354.79" type = "double"/>
+
+   <param name="stopptlon4" value = "116.33531602" type = "double"/>
+   <param name="stopptlat4" value = "40.07844738" type = "double"/>
+   <param name="stopptheading4" value = "355.70" type = "double"/>
+-->
+
+   <param name="stopptlon1" value = "116.33879886" type = "double"/>
+   <param name="stopptlat1" value = "41.07854593" type = "double"/>
+   <param name="stopptheading1" value = "175.23" type = "double"/> 
+
+
+   <param name="stopptlon2" value = "116.33880979" type = "double"/>
+   <param name="stopptlat2" value = "41.07833130" type = "double"/>
+   <param name="stopptheading2" value = "176.60" type = "double"/> 
+
+   <param name="stopptlon3" value = "116.33915960" type = "double"/>
+   <param name="stopptlat3" value = "40.07855976" type = "double"/>
+   <param name="stopptheading3" value = "355.88" type = "double"/> 
+
+ 
+
+<!--ivobjectfusion --> 
+
+<!--ivactuator--> 
+   <param name="mcudevice" value="0" type="int"/>
+   <!--param name="mcuserialport" value="/dev/ttyUSB1" type="string"/-->  
+   <param name="mcubaudrate" value="9600" type="int"/>
+   <param name="mculoopfrep" value="20" type="int"/>               
+    <param name="cartype" value = "1" type = "int" />    <!-- cartype = 0,ruicheng car; if cartype = 1,egg car--> 
+
+<!--ivroadstructure--> 
+   <param name="routemap" value="$(find ivrviz)/resource/maping.txt" type="string"/>             
+   <param name="rsloopfrep" value="20" type="int"/>               
+
+<!--ivpathplanner--> 
+   <param name="scene" value="2" type="int"/>
+   <param name="pploopfrep" value="20" type="int"/>               
+   
+<!--ivrviz--> 
+<!--<param name="map_data_path" value="$(find ivrviz)/resource/maping.txt" type="str"/>--> 
+              
+
+<!--ivsteercontrol--> 
+   <param name="scloopfrep" value="20" type="int"/>               
+<!--ivdrivercontrol--> 
+   <param name="dcloopfrep" value="20" type="int"/>   
+<!--ivmonitor--> 
+   <param name="mnloopfrep" value="40" type="int"/>
+   <param name="radarbiasx" value="3.0"/>
+   <param name="radarbiasy" value="0.0"/>
+   <param name="radarbiasz" value="0.0"/>
+   <param name="velodynebiasx" value="1.0"/>
+   <param name="velodynebiasy" value="0.0"/>
+   <param name="velodynebiasz" value="1.5"/>
+
+<!--ivapp-->
+    <param name="appbaudrate" value="115200" type="int"/>
+    <!--param name="appserialport" value="/dev/ttyUSB2" type="string"/-->
+    <param name="appsendrate" value="1" type="int"/>
+<!--ivapp-->
+
+<!--ivvtox-->
+    <param name="vtoxrate" value="1" type="int"/>
+<!--ivvtox-->
+</launch>

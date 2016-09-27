@@ -1,0 +1,6 @@
+#!/bin/bash
+gnome-terminal -x $PWD/serial_xml/serialport.bash
+source /opt/ros/jade/setup.bash
+source /usr/local/serial/setup.bash
+source /home/ubuntu/ivpt/devel/setup.bash
+roslaunch /home/ubuntu/ivpt/src/launch/start.launch

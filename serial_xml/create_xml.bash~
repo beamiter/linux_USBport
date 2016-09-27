@@ -1,12 +1,9 @@
 #! /bin/bash  
   
-#author: yinnjian  
-#date: 2016/09/23  
+#author: dengzhaoqun  
+#date: 201202/14  
   
 outfile=serialport.launch
-
-# : > $outfile
-# echo "$outfile cleaned up."
 
 tabs=0  
   
