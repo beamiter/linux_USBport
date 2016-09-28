@@ -1,4 +1,4 @@
-注意：
+注意事项：
 	本教程不是固定端口号，即每个端口的USB端口号还是没有固定，但是此脚本读取每一个USB端口的硬件ID，并返回该硬件ID对应的USB端口号，并生成对应的端口号launch文件，实现了对端口号的动态配置。
 
 配置步骤：
@@ -8,6 +8,8 @@
 
 操作步骤：
 	将serial_xml文件夹放在用户home目录，将其中launch文件夹替换ivpt的launch,将其中startros.sh替换home目录下的startros.sh即可。
+	要注意的是第一次复制粘贴的时候要用"chmod 777"改变bash文件和sh文件的权限，之后每次只需覆盖ivpt的launch文件夹就可。
+	
 	
 
 

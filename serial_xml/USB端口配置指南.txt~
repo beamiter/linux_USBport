@@ -8,6 +8,8 @@
 
 操作步骤：
 	将serial_xml文件夹放在用户home目录，将其中launch文件夹替换ivpt的launch,将其中startros.sh替换home目录下的startros.sh即可。
+	要注意的是第一次复制粘贴的时候要用"chmod 777"改变bash文件和sh文件的权限，之后每次只需覆盖ivpt的launch文件夹就可。
+	
 	
 
 
